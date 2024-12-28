@@ -1,0 +1,14 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  metrics-collector:
+    build: .
+    volumes:
+      - ./data:/app/data
+      - ./app:/app/app
+    env_file:
+      - .env
+    restart: unless-stopped
+    command: python -m app.collector.metrics_collector
+
